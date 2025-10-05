@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }:
 let
@@ -70,8 +69,6 @@ in
       systemPackages = [
         cfg.package
       ];
-
-      variables.DIRENV_CONFIG = "/etc/direnv";
     };
   };
 }
