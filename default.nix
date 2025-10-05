@@ -13,7 +13,7 @@ let
       default = true;
       example = false;
     };
-  format = pkgs.formats.toml { };
+    iterm2-shell-integration-pkg = builtins.fetchGitHub "skyethepinkcat/nix-iterm2-shell-integration";
 in
 {
   options.programs.iterm2-shell-integration = {
@@ -24,7 +24,7 @@ in
       integration. Note that you need to logout and login for this change to apply
     '';
 
-    package = lib.mkPackageOption pkgs "iterm2-shell-integration" { };
+    package = lib.mkPackageOption iterm2-shell-integration-pkg "iterm2-shell-integration" { };
 
     enableBashIntegration = enabledOption ''
       Bash integration
