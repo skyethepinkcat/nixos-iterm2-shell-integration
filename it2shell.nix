@@ -11,9 +11,12 @@ that edit $HOME/Library/Preferences/com.googlecode.iterm2.plist
 and add:
 SUEnableAutomaticChecks = 0;
 */
+let 
+  selector = ./iterm2_shell_integration_selector.sh;
+in
 stdenvNoCC.mkDerivation rec {
-  pname = "iterm2shellintegration";
-  version = "3.5.14";
+  pname = "iterm2-shell-integration";
+  version = "0.0.1";
 
   src = fetchFromGitHub {
     owner = "gnachman";
@@ -25,8 +28,10 @@ stdenvNoCC.mkDerivation rec {
   dontBuild = true;
   doCheck = false;
   installPhase = ''
+    ls
      mkdir -p $out/bin
     mkdir -p $out/etc/profile.d
+    cp ${selector} $out/etc/profile.d/iterm2_shell_integration_selector.sh
     cp utilities/* $out/bin
     cp shell_integration/zsh $out/etc/profile.d/iterm2_shell_integration.zsh
     cp shell_integration/bash $out/etc/profile.d/iterm2_shell_integration.bash
