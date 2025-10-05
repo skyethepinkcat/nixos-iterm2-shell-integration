@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   cfg = config.programs.iterm2-shell-integration;
@@ -13,7 +14,7 @@
   iterm2-shell-integration-pkg = import (builtins.fetchGit {
     url = "https://github.com/skyethepinkcat/nix-iterm2-shell-integration.git";
     rev = "84ad1d39c7d79a538093f1bab2a735d3c3210454";
-  });
+  }) { pkgs = pkgs; };
 in {
   options.programs.iterm2-shell-integration = {
     enable = lib.mkEnableOption ''
