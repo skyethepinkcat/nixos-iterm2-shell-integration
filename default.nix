@@ -45,7 +45,7 @@ in
     programs = {
       zsh.interactiveShellInit = lib.mkIf cfg.enableZshIntegration ''
         if ${lib.boolToString cfg.loadInNixShell} || printenv PATH | grep -vqc '/nix/store'; then
-          source ${cfg.iterm2-shell-integration.package}/share/iterm2-shell-integration/iterm2_shell_integration.zsh
+          source ${cfg.package}/share/iterm2-shell-integration/iterm2_shell_integration.zsh
         fi
       '';
 
@@ -53,13 +53,13 @@ in
       #$IN_NIX_SHELL for "nix-shell"
       bash.interactiveShellInit = lib.mkIf cfg.enableBashIntegration ''
         if ${lib.boolToString cfg.loadInNixShell} || [ -z "$IN_NIX_SHELL$NIX_GCROOT$(printenv PATH | grep '/nix/store')" ] ; then
-          source ${cfg.iterm2-shell-integration.package}/share/iterm2-shell-integration/iterm2_shell_integration.bash
+          source ${cfg.package}/share/iterm2-shell-integration/iterm2_shell_integration.bash
         fi
       '';
 
       fish.interactiveShellInit = lib.mkIf cfg.enableFishIntegration ''
         if ${lib.boolToString cfg.loadInNixShell}; or printenv PATH | grep -vqc '/nix/store';
-          source ${cfg.iterm2-shell-integration.package}/share/iterm2-shell-integration/iterm2_shell_integration.fish
+          source ${cfg.package}/share/iterm2-shell-integration/iterm2_shell_integration.fish
         end
       '';
 
