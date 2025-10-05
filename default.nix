@@ -2,28 +2,27 @@
   lib,
   config,
   ...
-}:
-let
+}: let
   cfg = config.programs.iterm2-shell-integration;
-  enabledOption =
-    x:
+  enabledOption = x:
     lib.mkEnableOption x
     // {
       default = true;
       example = false;
     };
-    iterm2-shell-integration-pkg = builtins.fetchGit "https://github.com/skyethepinkcat/nix-iterm2-shell-integration";
-in
-{
+  iterm2-shell-integration-pkg = import (builtins.fetchGit {
+    url = "https://github.com/skyethepinkcat/nix-iterm2-shell-integration.git";
+    rev = "4c57d10ccdb9af8569c0c7035a7696c555f5f5bf";
+  });
+in {
   options.programs.iterm2-shell-integration = {
-
     enable = lib.mkEnableOption ''
       direnv integration. Takes care of both installation and
       setting up the sourcing of the shell. Additionally enables nix-direnv
       integration. Note that you need to logout and login for this change to apply
     '';
 
-    package = lib.mkPackageOption iterm2-shell-integration-pkg "iterm2-shell-integration" { };
+    package = lib.mkPackageOption iterm2-shell-integration-pkg "iterm2-shell-integration" {};
 
     enableBashIntegration = enabledOption ''
       Bash integration
@@ -38,7 +37,6 @@ in
     loadInNixShell = enabledOption ''
       loading direnv in `nix-shell` `nix shell` or `nix develop`
     '';
-
   };
 
   config = lib.mkIf cfg.enable {
@@ -62,7 +60,6 @@ in
           source ${cfg.package}/share/iterm2-shell-integration/iterm2_shell_integration.fish
         end
       '';
-
     };
 
     environment = {
