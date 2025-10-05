@@ -12,7 +12,7 @@
     };
   iterm2-shell-integration-pkg = import (builtins.fetchGit {
     url = "https://github.com/skyethepinkcat/nix-iterm2-shell-integration.git";
-    rev = "4c57d10ccdb9af8569c0c7035a7696c555f5f5bf";
+    rev = "07027d7972e3e86844e9e7c16be120c9bc985900";
   });
 in {
   options.programs.iterm2-shell-integration = {
