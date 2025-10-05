@@ -12,7 +12,7 @@ let
       default = true;
       example = false;
     };
-    iterm2-shell-integration-pkg = builtins.fetchGitHub "skyethepinkcat/nix-iterm2-shell-integration";
+    iterm2-shell-integration-pkg = builtins.fetchGit "https://github.com/skyethepinkcat/nix-iterm2-shell-integration";
 in
 {
   options.programs.iterm2-shell-integration = {
