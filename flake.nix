@@ -17,6 +17,10 @@
       # NixOS module for all systems
       nixosModules.default = import ./default.nix;
       nixosModules.iterm2-shell-integration = import ./default.nix;
+
+      # nix-darwin module for macOS
+      darwinModules.default = import ./default.nix;
+      darwinModules.iterm2-shell-integration = import ./default.nix;
     }
     // flake-utils.lib.eachDefaultSystem (
       system: let
